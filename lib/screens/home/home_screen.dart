@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_v2/cart/cart_screen.dart';
+import 'package:riverpod_v2/shared/cart_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,9 +8,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('this is Home Screen'), actions: [
-      
-      ],),
+      appBar: AppBar(
+        title: const Text('this is Home Screen'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CartScreen();
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.shopping_bag_outlined),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: GridView.builder(
