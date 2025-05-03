@@ -11,7 +11,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Cart Screen')),
+      appBar: AppBar(title: Text('Your Cart')),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(children: [

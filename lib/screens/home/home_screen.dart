@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_v2/cart/cart_screen.dart';
-import 'package:riverpod_v2/shared/cart_icon.dart';
+import 'package:riverpod_v2/screens/cart/cart_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
