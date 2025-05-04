@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_v2/providers/products_provider.dart';
 import 'package:riverpod_v2/screens/cart/cart_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final allProducts = ref.watch(productProvider);
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
+        backgroundColor: Colors.grey.shade200,
         title: const Text('this is Home Screen'),
         actions: [
           IconButton(
@@ -28,7 +33,8 @@ class HomeScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: GridView.builder(
-          itemCount: 8,
+          physics: const BouncingScrollPhysics(),
+          itemCount: allProducts.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 20,
@@ -38,7 +44,21 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Container(
               padding: const EdgeInsets.all(20),
-              color: Colors.blueGrey.withOpacity(0.5),
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Image.asset(allProducts[index].image, width: 60, height: 60),
+                  Text(allProducts[index].title),
+                  Text(
+                    '€${allProducts[index].price}',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),

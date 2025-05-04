@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_v2/screens/home/home_screen.dart';
-import 'package:riverpod_v2/test/test.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+
       // theme: ThemeData(primarySwatch: Colors.blue),
-      home: MaterialApp(home: Test()),
+      home: MaterialApp(home: HomeScreen()),
     );
   }
 }
