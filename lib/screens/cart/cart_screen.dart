@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_v2/providers/cart_provider.dart';
 import 'package:riverpod_v2/providers/products_provider.dart';
+
 
 class CartScreen extends ConsumerStatefulWidget {
   const CartScreen({super.key});
@@ -14,7 +16,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   @override
   Widget build(BuildContext context) {
     //here no need for the ref variable like the stateless widget we have used before
-    final cartProducts = ref.watch(productsProvider);
+    final cartProducts = ref.watch(cartNotifierProvider);
     //the product from the provider caming here
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
