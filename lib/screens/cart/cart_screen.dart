@@ -14,17 +14,23 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   @override
   Widget build(BuildContext context) {
     //here no need for the ref variable like the stateless widget we have used before
-    final cartProducts = ref.watch(reducedProductProvider);
+    final cartProducts = ref.watch(productsProvider);
     //the product from the provider caming here
     return Scaffold(
-      appBar: AppBar(title: Text('Your Cart')),
+      backgroundColor: Colors.grey.shade200,
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade200,
+        title: Text('Your Cart'),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children:
               cartProducts.map((product) {
                 return Container(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  margin: const EdgeInsets.only(top: 10),
+                  // decoration: BoxDecoration(color: Colors.white),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                     children: [
                       Image.asset(product.image, width: 60, height: 60),
