@@ -1,22 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/product.dart';
 
-final cartNotifierProvider = NotifierProvider<CartNotifier, Set<Product>>(() {
-  return CartNotifier();
-});
+part 'cart_provider.g.dart';
 
-class CartNotifier extends Notifier<Set<Product>> {
+
+
+@riverpod
+class CartNotifier extends _$CartNotifier {
   @override
   Set<Product> build() {
-    return const {
-      Product(
-        id: '4',
-        title: 'Red backpack',
-        price: 45,
-        image: 'assets/icons/backpack.png',
-      ),
-    };
+    return const {};
   }
 
   //method to add product to cart
@@ -32,4 +26,23 @@ class CartNotifier extends Notifier<Set<Product>> {
       state = state.where((p) => p.id != product.id).toSet();
     }
   }
+}
+
+//this is the manual creation
+//the automatic is on the created class
+
+// final cartNotifierProvider = NotifierProvider<CartNotifier, Set<Product>>(() {
+//   return CartNotifier();
+// });
+
+
+@riverpod
+int cartTotal(ref){
+  final cartProducts = ref.watch(cartNotifierProvider);
+  int total = 0;
+  for (Product product in cartProducts) {
+    total += product.price;
+  }
+
+  return total;
 }

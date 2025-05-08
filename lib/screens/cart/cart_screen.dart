@@ -17,6 +17,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   Widget build(BuildContext context) {
     //here no need for the ref variable like the stateless widget we have used before
     final cartProducts = ref.watch(cartNotifierProvider);
+    final total = ref.watch(cartTotalProvider);
     //the product from the provider caming here
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
@@ -27,30 +28,36 @@ class _CartScreenState extends ConsumerState<CartScreen> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
-          children:
-              cartProducts.map((product) {
-                return Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  // decoration: BoxDecoration(color: Colors.white),
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Image.asset(product.image, width: 60, height: 60),
-                      const SizedBox(width: 10),
-                      Text(product.title),
-                      const Expanded(child: SizedBox()),
-                      Text(
-                        '€${product.price}',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w700,
-                        ),
+          children: [
+            Column(
+              children:
+                  cartProducts.map((product) {
+                    return Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      // decoration: BoxDecoration(color: Colors.white),
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Image.asset(product.image, width: 60, height: 60),
+                          const SizedBox(width: 10),
+                          Text(product.title),
+                          const Expanded(child: SizedBox()),
+                          Text(
+                            '€${product.price}',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                );
-              }).toList(),
+                    );
+                  }).toList(),
+            ),
+
+            Text('Total price -  $total')
+          ],
         ),
       ),
     );
